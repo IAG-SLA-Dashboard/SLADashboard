@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv='expires' content='-1'>
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0, no-store, must-revalidate, max-age=0" />   
+    <meta http-equiv="pragma" content="no-cache" />
+
+    <title>SLA Monitor</title>
+    <link rel="icon" href="img/IBERIA-LOGO-TAB.png">
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bar.css">
+    <link rel="stylesheet" href="css/export.css" type="text/css" media="all"/>
+
+    <script type='text/javascript' src="js/papaparse.js"></script>
+    <script type='text/javascript' src="js/jquery.min.js"></script>
+    <script type='text/javascript' src="js/refreshJS.js"></script>
+    <script type='text/javascript' src="js/util.js"></script>
+	
+	<script type='text/javascript' src="js/ResonseCriticalIncSoundPlay.js"></script>
+	<script type='text/javascript' src="js/ResonseHighIncSoundPlay.js"></script>
+	<script type='text/javascript' src="js/ResonseMediumIncSoundPlay.js"></script>
+	<script type='text/javascript' src="js/ResonseLowIncSoundPlay.js"></script>
+    
+	<script type='text/javascript' src="js/show_inc_count.js"></script>
+    <script type='text/javascript' src="js/ResponseNewIncSoundPlay.js"></script>
+    <script type='text/javascript' src="js/ResolutionIncSoundPlay.js"></script>
+    <script type='text/javascript' src="js/show_inc_grid.js"></script>
+    <script type='text/javascript' src="js/amcharts.js"></script>
+    <script type='text/javascript' src="js/serial.js"></script>
+    <script type='text/javascript' src="js/export.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="col-md-12" style="padding-top: 5px;">
+            <div class="col-md-3" id="main">
+                <img src="img/NIITtech_logo.jpg" class="imgLogo"/>
+            </div>
+            <div class="col-md-7" id="main" style="padding-left: 7%;">
+                <img src="img/iberia-logo.png" height="55" class="floatLeft" />
+                <h1 class="monitorHeadingText"><b>Incident SLA Monitor</b></h1>
+            </div>
+            <div class="col-md-2" id="main">
+                <img src="img/IAG-Logo.jpg" class="imgLogo"/>
+
+            </div>
+        </div>
+        <div class=" col-lg-6  price_table_container" id="mainDivContent">
+            <div class="headingChartText">
+                <div>
+                    Response SLA Monitor
+                </div>
+                <div class="clear-both"></div>
+            </div>
+            <div class="resolution-price-table-wrap-critical">
+                <div class="price_table_row price_table_body" id="responseSlaDiv">
+                    <table id="responseSlaTable" class="table table-bordered">
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="responseTimeDiv" style="color:blue;border-bottom: groove;"></div>
+                <div class="headingChartText">Live Incident Tracking</div>
+                <div class="barIndicator">
+					<div class="pendingDiv">
+                        <div class="pendingColor">abc</div>
+                        <div class="pendingLegend"><strong>Incident Pending</strong></div>
+                    </div>
+                    <div class="progressDiv">
+                        <div class="progressColor">abc</div>
+                        <div class="progressLegend"><strong>Work In Progress</strong></div>
+                    </div>
+                    <div class="assignedDiv">
+                        <div class="assignedColor">avc</div>
+                        <div class="assignedLegend"><strong>Incident Assigned</strong></div>
+                    </div>
+                </div>
+				<div class="col-lg-12 chartMainDiv">
+					<div class="col-lg-2 biBarDiv" >
+                        <div id="biGreen" ></div>
+						<div id="biYellow" ></div>
+						<div id="biGray" ></div>
+                    </div>
+                    <div class="col-lg-2 cargoBarDiv" >
+                        <div id="cargoGreen" ></div>
+						<div id="cargoYellow" ></div>
+						<div id="cargoGray"></div>
+                    </div>
+					 <div class="col-lg-2 dbaBarDiv" >
+                        <div id="dbaGreen"></div>
+						<div id="dbaYellow"></div>
+						<div id="dbaGray"></div>
+                    </div>
+					<div class="col-lg-2 ibBarDiv" >
+                        <div id="ibGreen"></div>
+						<div id="ibYellow"></div>
+						<div id="ibGray"></div>
+                    </div>
+					<div class="col-lg-2 ssrmlBarDiv" >
+                        <div id="ssrmlGreen"></div>
+						<div id="ssrmlYellow"></div>
+						<div id="ssrmlGray"></div>
+                    </div>
+					<div class="col-lg-2 webBarDiv" >
+                        <div id="weblogicGreen"></div>
+						<div id="weblogicYellow"></div>
+						<div id="weblogicGray"></div>
+                    </div>					
+                </div>
+                <div id="chartdiv"></div>
+                <div id="chartTimeDiv" class="colorBlue"></div>
+            </div>
+        </div>
+        <div class="col-lg-6 price_table_container">
+            <div class="headingChartText ">
+                <div id="sub-left1">
+                    Resolution SLA Monitor
+                </div>
+                <div class="clear-both"></div>
+            </div>
+            <div class="resolution-price-table-wrap-critical">
+                <div class="price_table_row resolution-price_table_body" id="resolutionSlaDiv">
+                    <table id="resolutionSlaTable" class="table table-bordered">
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+			</div>
+            <div id="resolutionTimeDiv" class="colorBlue"></div>
+        </div>
+        
+
+        <div class="col-md-12">
+            <div id="main" class="col-lg-1">
+                <img src="img/iag.jpg" class="imgLogo"/>
+            </div>
+
+            <div class="legendDiv">
+                <div>
+                    <div class="breachWarning legend"><strong>SLA Breach Warning</strong></div>
+                    <div class="breachWatch legend"><strong>SLA Breach Watch</strong></div>
+                    <div class="breachAwaited legend"><strong>Response/Resolution Awaited</strong></div>
+					<div class="breach legend"><strong>SLA Breached</strong></div>
+                </div>
+            </div>            
+            <div id="main" class="col-lg-2 floatRight">
+                <img src="img/ismart.png" class="imgLogo"/>
+            </div>
+        </div>
+    </div>
+
+    <script>	
+	
+        refreshJS();
+		sessionStorage.clear();
+        window.setInterval("finalUpdate()", 1000);
+        var pageLoad = new Date().getTime();
+
+        function finalUpdate() {
+			checkForResponseUpdate();
+			checkForResolutionUpdate();
+			checkForRSLV_ChartUpdate();		          
+			console.log(responseFlag+"---"+resolutionFlag+"---"+RSLV_ChartFlag);
+            if (responseFlag && resolutionFlag && RSLV_ChartFlag) {
+                cache_clear();
+            }
+        }
+
+        function cache_clear() {
+            window.location.reload(true);
+        }
+
+        var checkResponseUrl = "Response.csv";
+        var checkResolutionUrl = "Resolution.csv";
+        var checkRSLVUrl = "RSLV_Chart.csv";
+        var firstCheck = false;
+        var responseFlag = false;
+        var resolutionFlag = false;
+        var RSLV_ChartFlag = false;
+
+        function checkForResponseUpdate() {
+            $.ajax(checkResponseUrl, {
+                type: 'HEAD',
+                success: function(response, status, xhr) {
+                    if (firstCheck === false) {
+                        firstCheck = true;
+                        return;
+                    }
+                    lastModified = new Date(xhr.getResponseHeader('Last-Modified')).getTime();
+                    if (responseFlag == false && lastModified > pageLoad) {
+                        responseFlag = true;
+                    }
+                }
+            });
+        }
+
+        function checkForResolutionUpdate() {
+            $.ajax(checkResolutionUrl, {
+                type: 'HEAD',
+                success: function(response, status, xhr) {
+                    if (firstCheck === false) {
+                        firstCheck = true;
+                        return;
+                    }
+                    lastModified = new Date(xhr.getResponseHeader('Last-Modified')).getTime();
+                    if (resolutionFlag == false && lastModified > pageLoad) {
+                        resolutionFlag = true;
+                    }
+                }
+            });
+        }
+
+        function checkForRSLV_ChartUpdate() {
+            $.ajax(checkRSLVUrl, {
+                type: 'HEAD',
+                success: function(response, status, xhr) {
+                    if (firstCheck === false) {
+                        firstCheck = true;
+                        return;
+                    }
+                    lastModified = new Date(xhr.getResponseHeader('Last-Modified')).getTime();
+                    if (RSLV_ChartFlag == false && lastModified > pageLoad) {
+                        RSLV_ChartFlag = true;
+                    }
+                }
+            });
+        }
+
+        responseSlaGrid();        
+        
+        responseSlaDivScroll();
+        resolutionSlaDivScroll();
+
+        var responseCsvTime = csvRefreshTime("Response.csv");
+        var resolutionCsvTime = csvRefreshTime("Resolution.csv");
+        var RSLV_ChartCsvTime = csvRefreshTime("RSLV_Chart.csv");
+
+        $('#responseTimeDiv').append('<strong style="margin-left: 62%;">' + "Status At: " + responseCsvTime + '</strong>');
+        $('#resolutionTimeDiv').append('<strong style="margin-left: 62%;">' + "Status At: " + resolutionCsvTime + '</strong>');
+        $('#chartTimeDiv').append('<strong style="margin-left: 62%;">' + "Status At: " + RSLV_ChartCsvTime + '</strong>');
+		
+    </script>
+</body>
